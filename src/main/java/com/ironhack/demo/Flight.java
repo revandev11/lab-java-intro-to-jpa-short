@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 
 @Entity
-@Table
+@Table(name = "flights")
 public class Flight {
 @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -60,8 +60,8 @@ public class Flight {
 
     public Flight(){}
 
-    public Flight(Integer flightId, String flightNumber, String aircraft, Integer totalAircraftSeats, Integer flightMileage) {
-        this.flightId = flightId;
+    public Flight(Integer flightId,String flightNumber, String aircraft, Integer totalAircraftSeats, Integer flightMileage) {
+       this.flightId=flightId;
         this.flightNumber = flightNumber;
         this.aircraft = aircraft;
         this.totalAircraftSeats = totalAircraftSeats;

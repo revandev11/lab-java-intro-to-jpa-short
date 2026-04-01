@@ -3,19 +3,31 @@ package com.ironhack.demo;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "bookings")
 public class FlightBooking {
-@Id
+    @Id
+    @Column(name = "booking_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long bookingId;
-    @ManyToOne
-    @JoinColumn(name = "flight_id",referencedColumnName = "flightId")
-    private Flight flight;
-    @ManyToOne
-    @JoinColumn(name = "customer_id",referencedColumnName = "customerId")
-    private Customer customer;
 
-public FlightBooking(){}
+    @Column(name = "flight_id")
+    private int flightId;
+
+    @Column(name = "customer_id")
+    private int customerId;
+
+    public int getFlightId() {
+        return flightId;
+    }
+
+    public void setFlightId(int flightId) {
+        this.flightId = flightId;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
     public Long getBookingId() {
         return bookingId;
     }
@@ -24,19 +36,17 @@ public FlightBooking(){}
         this.bookingId = bookingId;
     }
 
-    public Flight getFlight() {
-        return flight;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
-    public void setFlight(Flight flight) {
-        this.flight = flight;
+    public FlightBooking(Integer customerId, Integer flightId) {
+        this.customerId = customerId;
+        this.flightId = flightId;
+    }
+    public FlightBooking() {
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
+
 }

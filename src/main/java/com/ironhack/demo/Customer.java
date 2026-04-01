@@ -4,18 +4,21 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "customers")
 public class Customer {
 @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer customerId;
     @Column(name = "customer_name",nullable = false)
     private String customerName;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false,name = "status")
-    private String customerStatus;
+    private CustomerStatus customerStatus;
     @Column(nullable = false,name = "mileage")
     private Integer totalCustomerMileage;
+
+    public Customer(){}
 
     public Integer getCustomerId() {
         return customerId;
@@ -33,11 +36,11 @@ public class Customer {
         this.customerName = customerName;
     }
 
-    public String getCustomerStatus() {
+    public CustomerStatus getCustomerStatus() {
         return customerStatus;
     }
 
-    public void setCustomerStatus(String customerStatus) {
+    public void setCustomerStatus(CustomerStatus customerStatus) {
         this.customerStatus = customerStatus;
     }
 
@@ -49,8 +52,9 @@ public class Customer {
         this.totalCustomerMileage = totalCustomerMileage;
     }
 
-    public Customer(Integer customerId, String customerName, String customerStatus, Integer totalCustomerMileage) {
-        this.customerId = customerId;
+
+    public Customer( Integer customerId,String customerName, CustomerStatus customerStatus, Integer totalCustomerMileage) {
+        this.customerId=customerId;
         this.customerName = customerName;
         this.customerStatus = customerStatus;
         this.totalCustomerMileage = totalCustomerMileage;
